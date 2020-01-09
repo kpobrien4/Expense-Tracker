@@ -16,10 +16,14 @@ ws['A6'] = 'Student Loan'
 ws['A6'] = 'Savings'
 ws['A7'] = 'Recreation'
 
+# Formatting
+ws.column_dimensions['A'].width = 20
+
 for row in range(2, 8):
      for col in range(3, 6):
         _ = ws.cell(column=col, row=row, value="{0}".format(0))
-
+    
+# Dates
 ws['B2'] = datetime.datetime(2019, 1, 9).strftime("%m/%d/%y")
 
 # Column Titles
