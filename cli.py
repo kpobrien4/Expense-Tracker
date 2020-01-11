@@ -1,4 +1,5 @@
 import click
+import pandas as pd
 from openpyxl import Workbook, load_workbook
 import os
 import datetime
@@ -8,6 +9,7 @@ wb = load_workbook(filename = "expense_tracker.xlsx")
 ws = wb.active
 
 os.system("python3 spreadsheet.py")
+expenses = pd.read_excel("expense_tracker.xlsx")
 
         
 @click.command()
@@ -25,11 +27,11 @@ def addSpent(cat, amt):
     wb.save("expense_tracker.xlsx")
 
 def balance():
-    totalAmt = float(ws['E3'].value)
+    totalAmt = expenses["Budgeted"][1] - expenses["Spent"][1]
     if totalAmt < 0:
-        print("You are ${amt} over budget")
+        print("You are $%.2f over budget" % totalAmt)
     elif totalAmt > 0:
-        print("You have ${amt} remaining")
+        print("You have $%.2f remaining" % totalAmt)
     else:
         print("You are at budget")
 
