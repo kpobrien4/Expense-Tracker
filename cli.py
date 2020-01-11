@@ -21,13 +21,12 @@ def spent(expense, category):
     addSpent(category, expense)
     balance()
     
-
 def addSpent(cat, amt):
     ws['D3'] = float(ws['D3'].value) + float(amt)
     wb.save("expense_tracker.xlsx")
 
 def balance():
-    totalAmt = expenses["Budgeted"][1] - expenses["Spent"][1]
+    totalAmt = float(ws['C3'].value) - float(ws['D3'].value)
     if totalAmt < 0:
         print("You are $%.2f over budget" % totalAmt)
     elif totalAmt > 0:
