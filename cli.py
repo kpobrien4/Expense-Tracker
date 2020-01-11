@@ -19,20 +19,24 @@ def spent(expense, category):
     """Simple program that tracks EXPENSES in various CATEGORIES."""
     click.echo('Spent ${:,.2f} on %s'.format(expense) % ( category))
     addSpent(category, expense)
-    balance()
+    balance(category)
     
 def addSpent(cat, amt):
-    ws['D3'] = float(ws['D3'].value) + float(amt)
-    wb.save("expense_tracker.xlsx")
+    if amt > 0:
+        ws['D3'] = float(ws['D3'].value) + float(amt)
+        wb.save("expense_tracker.xlsx")
+    else: 
+        print("Wait what the..!")
 
-def balance():
+def balance(cat):
+    chosenCategory = cat
     totalAmt = float(ws['C3'].value) - float(ws['D3'].value)
     if totalAmt < 0:
-        print("You are $%.2f over budget" % totalAmt)
+        print("You are $%.2f over budget for %s" % (totalAmt, chosenCategory))
     elif totalAmt > 0:
-        print("You have $%.2f remaining" % totalAmt)
+        print("You have $%.2f remaining for %s" % (totalAmt, chosenCategory))
     else:
-        print("You are at budget")
+        print("You are at budget for %s" % chosenCategory)
 
 if __name__ == '__main__':
     spent()
