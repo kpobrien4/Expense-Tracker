@@ -17,9 +17,12 @@ expenses = pd.read_excel("expense_tracker.xlsx")
 @click.option('--expense', prompt='You have spent', default=0.00, help='Amount spent.')
 def spent(expense, category):
     """Simple program that tracks EXPENSES in various CATEGORIES."""
-    click.echo('Spent ${:,.2f} on %s'.format(expense) % ( category))
-    addSpent(category, expense)
-    balance(category)
+    if category == ws['A3'].value:
+        click.echo('Spent ${:,.2f} on %s'.format(expense) % ( category))
+        addSpent(category, expense)
+        balance(category)
+    else:
+        print("That is not a valid category")
     
 def addSpent(cat, amt):
     if amt > 0:
