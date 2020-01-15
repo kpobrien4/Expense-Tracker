@@ -17,14 +17,16 @@ ws['A7'] = 'Recreation'
 
 # Formatting
 ws.column_dimensions['A'].width = 20
+ws.column_dimensions['B'].width = 17
+ws.column_dimensions['D'].width = 19
     
 # Dates
 # ws['B2'] = datetime.datetime(2019, 1, 9).strftime("%m/%d/%y")
 
 # Column Titles
-ws['B1'] = 'Budgeted'
-ws['C1'] = 'Spent'
-ws['D1'] = 'Remaining'
+ws['B1'] = 'Budgeted ($)'
+ws['C1'] = 'Spent ($)'
+ws['D1'] = 'Remaining ($)'
 
 for row in range(2, 8):
      for col in range(2, 5):
@@ -39,6 +41,9 @@ for row in range(2, 8):
 ws['B2'] = 900
 ws['B3'] = 200
 ws['B4'] = 200
+ws['B5'] = 100
+ws['B6'] = 500
+ws['B7'] = 100
 
 # Spent amounts
 
