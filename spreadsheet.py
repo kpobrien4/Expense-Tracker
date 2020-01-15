@@ -19,13 +19,12 @@ ws['A7'] = 'Recreation'
 ws.column_dimensions['A'].width = 20
     
 # Dates
-ws['B2'] = datetime.datetime(2019, 1, 9).strftime("%m/%d/%y")
+# ws['B2'] = datetime.datetime(2019, 1, 9).strftime("%m/%d/%y")
 
 # Column Titles
-ws['B1'] = 'Date'
-ws['C1'] = 'Budgeted'
-ws['D1'] = 'Spent'
-ws['E1'] = 'Remaining'
+ws['B1'] = 'Budgeted'
+ws['C1'] = 'Spent'
+ws['D1'] = 'Remaining'
 
 for row in range(2, 8):
      for col in range(2, 5):
@@ -33,13 +32,13 @@ for row in range(2, 8):
 
 
 for row in range(2, 8):
-     for col in range(5, 6):
-        _ = ws.cell(column=col, row=row, value="{0}".format("=(C2:C7 - D2:D7)"))
+     for col in range(4, 5):
+        _ = ws.cell(column=col, row=row, value="{0}".format("=(B2:B7 - C2:C7)"))
 
 # Budgeted amounts
-ws['C2'] = 900
-ws['C3'] = 200
-ws['C4'] = 200
+ws['B2'] = 900
+ws['B3'] = 200
+ws['B4'] = 200
 
 # Spent amounts
 
