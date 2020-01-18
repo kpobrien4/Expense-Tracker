@@ -15,6 +15,7 @@ expenses = pd.read_excel("expense_tracker.xlsx")
 @click.option('--category', prompt='Category of expense', help='Category money was spent in.')
 @click.option('--expense', prompt='Amount spent', default=0.0, help='Amount spent.')
 
+
 def categoryValid(expense, category):
     """Simple program that tracks EXPENSES in various CATEGORIES."""
     if category in expenses["Variable Expenses"].values:
@@ -61,6 +62,7 @@ def addSpent(cat, amt, spentCell):
 
 def balance(cat, spentCell, budgetCell):
     chosenCategory = cat
+
     totalAmt = float(ws[budgetCell].value) - float(ws[spentCell].value)
     if totalAmt < 0:
         print("You are $%.2f over budget for %s" % (totalAmt, chosenCategory))
@@ -68,6 +70,12 @@ def balance(cat, spentCell, budgetCell):
         print("You have $%.2f remaining for %s" % (totalAmt, chosenCategory))
     else:
         print("You are at budget for %s" % chosenCategory)
+    printTotal()
+
+def printTotal():
+    expensesAfter = pd.read_excel("expense_tracker.xlsx")
+    totalSpent = expensesAfter["Spent ($)"].sum()
+    print("You have spent a total of ${:,.2f} this month.".format(totalSpent))
 
 if __name__ == '__main__':
     categoryValid()
