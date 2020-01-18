@@ -31,7 +31,7 @@ def categoryValid(expense, category):
             spentCell = 'C4'
             budgetCell = 'B4'
             spent(expense, category, spentCell, budgetCell)
-        elif category == "Restaurants":
+        elif category == "Restaurant":
             spentCell = 'C5'
             budgetCell = 'B5'
             spent(expense, category, spentCell, budgetCell)
